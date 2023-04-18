@@ -36,8 +36,7 @@ npm install
 ### Usage
 
 1. Obtain an API key from OpenWeatherMap API by signing up for a free account at https://openweathermap.org/. 
-2. Create a `.env` file in the project root directory and add your API key as follows:
-API_KEY=YOUR_API_KEY
+2. add into script.js in "apikey"
 
 Replace `YOUR_API_KEY` with your actual API key from OpenWeatherMap API.
 
