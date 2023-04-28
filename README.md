@@ -21,11 +21,6 @@ Weather App is a web application that provides current weather information for a
 - Vanilla tilt.js library
  
 
-
-### Prerequisites
-
-- Node.js and npm installed on your local machine
-
 ### Installation
 
 1. Clone the repository to your local machine:
@@ -34,20 +29,13 @@ git clone https://github.com/anchitgupta01/weather-app.git
 2. Change to the project directory:
 cd weather-app
 
-3. Install the dependencies:
-npm install
 
 ### Usage
 
-1. Obtain an API key from OpenWeatherMap API by signing up for a free account at https://openweathermap.org/. 
+1. Obtain an `API key` from OpenWeatherMap API by signing up for a free account at https://openweathermap.org/. 
 2. add into script.js in "apikey"
 
-Replace `YOUR_API_KEY` with your actual API key from OpenWeatherMap API.
-
-3. Start the development server:
-npm run start
-
-4. Open a web browser and go to `http://localhost:3000` to view the weather app.
+ Open a web browser and go to `go live`(in vs code) to view the weather app.
 
 ### Credits
 
