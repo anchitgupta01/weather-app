@@ -29,6 +29,7 @@ body {
   width: 100%;
   max-width: 420px;
   margin: 1em;
+  margin-left: 100px;
   overflow: hidden;
 }
 
@@ -65,6 +66,62 @@ input.search-bar {
 
 button:hover {
   background: #7c7c7c6b;
+}
+.hover-text {
+  position: relative;
+}
+
+.hover-text::before {
+  content: "Wind-Speed";
+  position: absolute;
+  top: -20px; /* adjust as needed */
+  left: 10%;
+  transform: translateX(-50%);
+  width: fit-content; /* adjust as needed */
+  padding: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+  background-color: #505253;
+  color: white;
+  border-radius: 5px;
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 9999;
+}
+
+.hover-text1:hover::before {
+  opacity: 1;
+}
+.hover-text1 {
+  position: relative;
+}
+
+.hover-text1::before {
+  content: "Humidity";
+  position: absolute;
+  top: -20px; /* adjust as needed */
+  left: 10%;
+  transform: translateX(-50%);
+  width: fit-content; /* adjust as needed */
+  padding: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+  background-color: #505253;
+  color: white;
+  border-radius: 5px;
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 9999;
+}
+
+.hover-text:hover::before {
+  opacity: 1;
 }
 
 h1.temp {
@@ -108,4 +165,36 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.news-feed {
+  opacity: 0.85;
+  margin: auto;
+  height: 350px;
+  width: 400px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+overflow: scroll;
+
+}
+.news-feed-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.news-item {
+  margin-bottom: 10px;
+}
+.news-item-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+.news-item-description {
+  font-size: 14px;
+}
+
+.container{
+  display:inline-flex;
+  justify-content: space-evenly;
 }
