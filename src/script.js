@@ -133,3 +133,36 @@ document
 geocode.getLocation();
 
 
+<<<<<<< HEAD
+=======
+// Your existing weather app code
+
+fetch(apiUrl)
+  .then(response => response.json())
+  .then(data => {
+    // Process the news data
+    if (data.articles && Array.isArray(data.articles)) {
+      const articles = data.articles;
+      const newsFeedContainer = document.getElementById('newsFeedContainer');
+
+      // Generate the news feed HTML dynamically
+      let newsHTML = '';
+      articles.forEach(article => {
+        newsHTML += `
+          <div class="news-item">
+            <div class="news-item-title">${article.title}</div>
+            <div class="news-item-description">${article.description}</div>
+          </div>
+        `;
+      });
+
+      // Insert the news feed HTML into the container
+      newsFeedContainer.innerHTML = newsHTML;
+    } else {
+      console.log('No news articles found.');
+    }
+  })
+  .catch(error => {
+    console.log('Error fetching news data:', error);
+  });
+>>>>>>> 2a66ee9 (Update script.js)
