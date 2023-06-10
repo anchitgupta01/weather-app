@@ -160,11 +160,10 @@ h1.temp {
 }
 
 a {
-  /* margin-top: 7%; */
+
   color: inherit;
   display: contents;
-  /* justify-content: center; */
-  /* align-items: center; */
+
 }
 
 .news-feed {
