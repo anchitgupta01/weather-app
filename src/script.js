@@ -1,13 +1,13 @@
 /* Fetching Data from OpenWeatherMap API */
 
 var humidityElement = document.createElement("span");
-humidityElement.style.marginTop="10px";
+humidityElement.style.marginTop = "10px";
 var parentElement = document.querySelector(".humidity");
 var windElement = document.createElement("span");
-windElement.style.marginTop="10px";
+windElement.style.marginTop = "10px";
 var parentElement1 = document.querySelector(".wind");
 
-let weather = {  
+let weather = {
   apiKey: "45ae1c4a404a89615a80604359063465",
   fetchWeather: function (city) {
     fetch(
@@ -32,18 +32,17 @@ let weather = {
     const { speed } = data.wind;
     document.querySelector(".city").innerText = "Weather in " + name;
     document.querySelector(".icon").src =
-    "https://openweathermap.org/img/wn/" + icon + ".png";
+      "https://openweathermap.org/img/wn/" + icon + ".png";
 
     document.querySelector(".description").innerText = description;
     document.querySelector(".temp").innerText = temp + "°C";
-    humidityElement.innerText = humidity + "%"; 
-    parentElement.appendChild(humidityElement); 
+    humidityElement.innerText = humidity + "%";
+    parentElement.appendChild(humidityElement);
 
-    windElement.innerText = speed + " km/h"; 
-    parentElement1.appendChild(windElement); 
-    
-    // document.querySelector(".wind").innerText =
-    //   "Wind speed: " + speed + " km/h";
+    windElement.innerText = speed + " km/h";
+    parentElement1.appendChild(windElement);
+
+
     document.querySelector(".weather").classList.remove("loading");
     document.body.style.backgroundImage =
       "url('https://source.unsplash.com/1600x900/?" + name + "')";
@@ -56,31 +55,31 @@ let weather = {
 /* Fetching Data from OpenCageData Geocoder */
 let geocode = {
   reverseGeocode: function (latitude, longitude) {
-    var apikey = "45ae1c4a404a89615a80604359063465";
+    const apikey = "45ae1c4a404a89615a80604359063465";
+    var request_url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apikey}`;
 
-    var api_url = "https://api.opencagedata.com/geocode/v1/json";
+    // var api_url = "https://api.opencagedata.com/geocode/v1/json";
 
-    var request_url =
-      api_url +
-      "?" +
-      "key=" +
-      apikey +
-      "&q=" +
-      encodeURIComponent(latitude + "," + longitude) +
-      "&pretty=1" +
-      "&no_annotations=1";
 
+   
+    fetch(request_url)
+    .then(response => response.json())
+    .then(data => {
+      // Process the weather data
+      console.log(data);
+    })
+    .catch(error => {
+      console.log('Error fetching weather data:', error);
+    });
     var request = new XMLHttpRequest();
     request.open("GET", request_url, true);
 
     request.onload = function () {
-
       if (request.status == 200) {
         var data = JSON.parse(request.responseText);
-        weather.fetchWeather(data.results[0].components.city);
-        console.log(data.results[0].components.city)
+        console.log(data);
+        weather.fetchWeather(data.name);
       } else if (request.status <= 500) {
-
         console.log("unable to geocode! Response code: " + request.status);
         var data = JSON.parse(request.responseText);
         console.log("error msg: " + data.status.message);
@@ -93,19 +92,20 @@ let geocode = {
       console.log("unable to connect to server");
     };
 
-    request.send(); 
+    request.send();
   },
-  getLocation: function() {
-    function success (data) {
-      geocode.reverseGeocode(data.coords.latitude, data.coords.longitude);
+  getLocation: function () {
+    function success(data) {
+        const latitude = data.coords.latitude;
+        const longitude = data.coords.longitude;
+      geocode.reverseGeocode(latitude, longitude);
     }
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(success, console.error);
-    }
-    else {
+    } else {
       weather.fetchWeather("London");
     }
-  }
+  },
 };
 
 document.querySelector(".search button").addEventListener("click", function () {
@@ -131,10 +131,12 @@ document
   });
 
 geocode.getLocation();
+// Your existing weather app code
 
+// Merge the news API code
+const apiKey = 'ddfc64df66c84751b51cc2fb02b6fd50';
+const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=${apiKey}`;
 
-<<<<<<< HEAD
-=======
 // Your existing weather app code
 
 fetch(apiUrl)
@@ -165,4 +167,3 @@ fetch(apiUrl)
   .catch(error => {
     console.log('Error fetching news data:', error);
   });
->>>>>>> 2a66ee9 (Update script.js)
