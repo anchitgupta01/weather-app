@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather App</title>
-
-  <link rel="stylesheet" href="./src/styles.css">
-  <script src="./src/script.js" defer></script>
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    
+    <link rel="stylesheet" href="./src/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./src/script1.js" defer></script>
 </head>
 <body>
-<div class="container">
+  <div class="divquote">
+
+    <p id="quote" >asdas</p>
+
+    
+    
+
+</div>
+
+  <div class="container">
 
   <!--Weather Card-->
   <div class="card">
@@ -42,9 +52,14 @@
         filter: invert(1); margin-right: 8px;" src="./images/wind.png"  alt="" srcset="">
         </div>
     </div>
+  
+
 
   </div>
-  <div class="news-feed">
+
+  <!-- news feed -->
+  <div  class="news-feed">
+    <div  class="news-scroll" >
     <div class="news-feed-title">Latest News</div>
     <div class="news-item">
      
@@ -52,6 +67,7 @@
     </div>
 
     <!-- Add more news items as needed -->
+  </div>
   </div>
 </div>
 
