@@ -131,33 +131,89 @@ document
   });
 
 geocode.getLocation();
-// Your existing weather app code
+
+
 
 // Merge the news API code
-const apiKey = 'ddfc64df66c84751b51cc2fb02b6fd50';
-const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=${apiKey}`;
+// const apiKey = 'ddfc64df66c84751b51cc2fb02b6fd50';
+const apiKey = '03lknI5PbEQs9YAqOeyP9aWnJqFe0lTK';
+// const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=${apiKey}`;
+const apiUrl = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${apiKey}`;
 
-fetch(apiUrl)
-  .then(response => response.json())
-  .then(data => {
-    // Process the news data
-    const articles = data.articles;
-    const newsFeedContainer = document.getElementById('newsFeedContainer');
 
-    // Generate the news feed HTML dynamically
-    let newsHTML = '';
-    articles.forEach(article => {
-      newsHTML += `
-        <div class="news-item">
-          <div class="news-item-title">${article.title}</div>
-          <div class="news-item-description">${article.description}</div>
-        </div>
-      `;
+// fetch(apiUrl)
+//   .then(response => response.json())
+//   .then(data => {
+//     // Process the news data
+//     if (data.articles && Array.isArray(data.articles)) {
+//       const articles = data.articles;
+//       const newsFeedContainer = document.getElementById('newsFeedContainer');
+
+//       // Generate the news feed HTML dynamically
+//       let newsHTML = '';
+//       articles.forEach(article => {
+//         newsHTML += `
+//           <div class="news-item">
+//             <div class="news-item-title">${article.title}</div>
+//             <div class="news-item-description">${article.description}</div>
+//           </div>
+//         `;
+//       });
+
+//       // Insert the news feed HTML into the container
+//       newsFeedContainer.innerHTML = newsHTML;
+//     } else {
+//       console.log('No news articles found.');
+//     }
+//   })
+//   .catch(error => {
+//     console.log('Error fetching news data:', error);
+//   });
+
+  function fetchMostViewedArticles() {
+    
+  
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const articlesList = document.getElementById('newsFeedContainer');
+  
+        // Clear any existing content
+        articlesList.innerHTML = '';
+  
+        // Loop through the articles and create list items
+        data.results.forEach(article => {
+          const listItem = document.createElement('li');
+          listItem.innerHTML = `<a href="${article.url}" target="_blank">${article.title}</a>`;
+          articlesList.appendChild(listItem);
+        });
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+  
+  fetchMostViewedArticles();
+  
+
+  //quote
+
+async function fetchRandomQuote() {
+  const response = await fetch('https://api.quotable.io/random');
+  const data = await response.json();
+  const quote = data.content;
+  return quote;
+}
+  function displayQuote(quote) {
+    const quoteElement = document.getElementById('quote');
+    quoteElement.textContent = quote;
+  }
+  
+  fetchRandomQuote()
+    .then(quote => {
+      displayQuote(quote);
+    })
+    .catch(error => {
+      console.error('Error:', error);
     });
-
-    // Insert the news feed HTML into the container
-    newsFeedContainer.innerHTML = newsHTML;
-  })
-  .catch(error => {
-    console.log('Error fetching news data:', error);
-  });
+  
