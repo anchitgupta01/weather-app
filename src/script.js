@@ -195,3 +195,27 @@ const apiUrl = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key
   
   fetchMostViewedArticles();
   
+
+  //quote
+
+  
+  async function fetchRandomQuote() {
+  const response = await fetch('https://type.fit/api/quotes');
+  const data = await response.json();
+  const randomIndex = Math.floor(Math.random() * data.length);
+  const quote = data[randomIndex].text;
+  return quote;
+
+  function displayQuote(quote) {
+    const quoteElement = document.getElementById('quote');
+    quoteElement.textContent = quote;
+  }
+  
+  fetchRandomQuote()
+    .then(quote => {
+      displayQuote(quote);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  
