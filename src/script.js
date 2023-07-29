@@ -205,7 +205,11 @@ const apiUrl = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key
   const randomIndex = Math.floor(Math.random() * data.length);
   const quote = data[randomIndex].text;
   return quote;
-
+  // const response = await fetch('https://api.quotable.io/random');
+  // const data = await response.json();
+  // const quote = data.content;
+  // return quote;
+}
   function displayQuote(quote) {
     const quoteElement = document.getElementById('quote');
     quoteElement.textContent = quote;
